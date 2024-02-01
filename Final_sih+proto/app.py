@@ -26,7 +26,6 @@ def index():
             domain = domain[4:]
         else:
             pass
-        print(domain)
         url = "https://" + domain
         response = requests.get(url)
         if response.status_code == 200:
@@ -50,4 +49,4 @@ def index():
 
     
 if __name__=='__main__':
-    app.run(debug=True , port=5500)
+    app.run(debug=False , host='0.0.0.0')
