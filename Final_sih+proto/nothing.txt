@@ -1,0 +1,45 @@
+from flask import Flask, request, jsonify
+from phishing_detection import detect_phishing
+
+app = Flask(_name_)
+
+@app.route('/', methods=['POST'])
+def index():
+    domain = request.form.get('URL', '')
+    result = detect_phishing(domain)
+    return jsonify({"result": result})
+
+if _name_ == '_main_':
+    app.run(debug=True, port=5500)
+
+
+
+
+if "." not in domain:
+            return render_template('real_result.html', result="invalid")
+        if "www." in domain:
+            domain = domain[4:]
+        else:
+            pass
+        print(domain)
+        url = "https://" + domain
+        response = requests.get(url)
+        if response.status_code == 200:
+
+            new_url_features = fex.data_set_list_creation(domain)
+
+            new_url_features = [new_url_features]
+
+            prediction = model.predict(new_url_features)
+            print(prediction)
+            if prediction >= 0.5:
+                print("The URL  is predicted as a phishing URL.")
+                result = "phishing"
+
+            else:
+                print("The URL  is predicted as a legitimate URL.")
+                result = "safe"
+            return render_template('plugin_ui.html', result=result)
+        else:
+            return render_template('plugin_ui.html', result="not active")    
+    
